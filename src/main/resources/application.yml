@@ -1,11 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/medical?useSSL=false
+    url: jdbc:mysql://134.175.124.131:37258/medical?useSSL=false&characterEncoding=utf-8
     username: root
-    password: 123456
+    password: 1qaz@WSX
   jpa:
+    properties:
+      hibernate:
+        dialect: com.medical.configuration.MysqlConfiguration
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQL5Dialect
   jackson:
