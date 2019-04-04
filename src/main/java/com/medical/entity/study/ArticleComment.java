@@ -1,4 +1,4 @@
-package com.medical.entity.message;
+package com.medical.entity.study;
 
 import com.medical.entity.BaseEntity;
 import com.medical.entity.user.User;
@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -14,16 +15,16 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "m_chat_messages")
+@Table(name = "s_article_comments")
 @DynamicInsert
 @DynamicUpdate
-public class ChatMessage extends BaseEntity {
+public class ArticleComment extends BaseEntity {
 
-    @ManyToOne(optional = false)
-    private User fromUser;
+    @ManyToOne(optional = false, cascade = {CascadeType.MERGE})
+    private Article article;
 
-    @ManyToOne(optional = false)
-    private User toUser;
+    @ManyToOne(optional = false, cascade = {CascadeType.MERGE})
+    private User user;
 
-    private String message;
+    private String content;
 }

@@ -1,9 +1,8 @@
 package com.medical.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.medical.entity.BaseEntity;
-import com.medical.entity.registration.Registration;
+import com.medical.enums.UserSexEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -25,10 +24,13 @@ public class User extends BaseEntity {
 
     private String avatar;
 
-    private Integer sex;
+    @Column(nullable = false)
+    private UserSexEnum sex;
+
+    @Column(nullable = false)
+    private String phone;
 
     @JsonIgnore
-    @JsonManagedReference
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private List<UserAuth> userAuths;
 }

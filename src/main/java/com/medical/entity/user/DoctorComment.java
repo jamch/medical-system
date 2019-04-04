@@ -1,7 +1,6 @@
-package com.medical.entity.message;
+package com.medical.entity.user;
 
 import com.medical.entity.BaseEntity;
-import com.medical.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.DynamicInsert;
@@ -14,16 +13,18 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "m_chat_messages")
+@Table(name = "u_doctor_comments")
 @DynamicInsert
 @DynamicUpdate
-public class ChatMessage extends BaseEntity {
+public class DoctorComment extends BaseEntity {
 
     @ManyToOne(optional = false)
-    private User fromUser;
+    private User user;
 
     @ManyToOne(optional = false)
-    private User toUser;
+    private Doctor doctor;
 
-    private String message;
+    private Integer level;
+
+    private String content;
 }

@@ -5,6 +5,8 @@ import com.medical.entity.user.Doctor;
 import com.medical.entity.user.User;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -14,14 +16,16 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "r_registrations")
+@DynamicInsert
+@DynamicUpdate
 public class Registration extends BaseEntity {
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private RegistrationSource source;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private User user;
 }

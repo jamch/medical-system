@@ -19,10 +19,8 @@ import javax.persistence.Table;
 @DynamicUpdate
 public class Patient extends BaseEntity {
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private User user;
-
-    private String phone;
 
     private String identityNumber;
 

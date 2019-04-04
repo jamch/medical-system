@@ -5,6 +5,8 @@ import com.medical.entity.common.Department;
 import com.medical.entity.common.Hospital;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -17,15 +19,17 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "r_registrations_source")
+@DynamicInsert
+@DynamicUpdate
 public class RegistrationSource extends BaseEntity {
 
     @OneToMany(mappedBy = "source")
     private List<Registration> registrations;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Hospital hospital;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private Department department;
 
     private Date startAt;

@@ -10,6 +10,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,7 +20,7 @@ import javax.persistence.*;
 @DynamicUpdate
 public class Doctor extends BaseEntity {
 
-    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToOne(optional = false, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})
     private User user;
 
     private String description;
@@ -32,4 +33,9 @@ public class Doctor extends BaseEntity {
 
     @ManyToOne
     private Department department;
+
+    @OneToMany(mappedBy = "doctor", fetch = FetchType.LAZY)
+    private List<DoctorComment> comments;
+
+    private Integer score;
 }
