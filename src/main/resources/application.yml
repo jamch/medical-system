@@ -13,3 +13,4 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5Dialect
   jackson:
     default-property-inclusion: non_empty
+    property-naming-strategy: CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES

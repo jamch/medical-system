@@ -19,16 +19,20 @@ import java.util.List;
 @DynamicUpdate
 public class User extends BaseEntity {
 
-    @Column(nullable = false)
     private String name;
 
     private String avatar;
 
-    @Column(nullable = false)
     private UserSexEnum sex;
 
     @Column(nullable = false)
     private String phone;
+
+    @OneToOne
+    private Patient patient;
+
+    @OneToOne
+    private Doctor doctor;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REMOVE})

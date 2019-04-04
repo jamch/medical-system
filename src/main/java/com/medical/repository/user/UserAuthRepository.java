@@ -7,6 +7,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 @Repository
-@RepositoryRestResource(exported = false)
+@RepositoryRestResource(path = "auths")
 public interface UserAuthRepository extends JpaRepository<UserAuth, Long>, QuerydslPredicateExecutor<UserAuth> {
 }
